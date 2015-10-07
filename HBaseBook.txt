@@ -1,0 +1,95 @@
+
+Book:《HBase权威指南》
+=============================
+https://github.com/larsgeorge/hbase-book
+
+
+Git
+=============================
+$ git clone https://github.com/yhli365/hbase-book.git
+--查看标签
+$ git tag
+--查看分支
+$ git branch -a
+
+a.首次新建分支
+--从已有的标签或分支创建新的分支
+$ git checkout -b rev1_cdh3 rev1
+--创建远程分支
+$ git push --set-upstream origin rev1_cdh3
+
+
+编译
+=============================
+mvn eclipse:clean eclipse:eclipse
+mvn clean
+mvn compile
+mvn package -DskipTests
+
+
+ch02 安装
+=============================
+p60: 双通道或三通道内存配置要求CPU和主板都支持。如何确认？
+p62：--网络：双端口千兆以太网卡? 万兆网  --PSU
+p65: --文件系统 ext3：noatime tune2fs；ext4：关闭延迟分配；不推荐设置混合文件系统。
+p69: Hadoop版本和HBase版本搭配
+p84: 配置文件同步工具rsync
+
+$ hbase shell
+create 'testtable','colfam1'
+list 'testtable'
+put 'testtable','myrow-1','colfam1:q1','value-1'
+put 'testtable','myrow-2','colfam1:q2','value-2'
+put 'testtable','myrow-2','colfam1:q3','value-3'
+scan 'testtable'
+get 'testtable','myrow-2'
+delete 'testtable','myrow-2','colfam1:q2'
+scan 'testtable'
+disable 'testtable'
+drop 'testtable'
+exit
+
+$ hbase shell
+create 'testtable','colfam1'
+for i in 'a'..'z' do for j in '1'..'9' do \
+put 'testtable',"myrow-#{i}#{j}","colfam1:q#{j}","value-#{j}" end end
+scan 'testtable'
+count 'testtable'
+
+
+ch03 客户端API：基础知识
+=============================
+hadoop jar hbase-book-ch03-*.jar client.CRUDExample
+--CRUD操作
+CRUDExample
+PutExample
+PutIdenticalExample
+PutWriteBufferExample
+PutListExample
+PutListErrorExample1
+PutListErrorExample2
+CheckAndPutExample
+GetExample
+GetListExample
+GetListErrorExample
+GetRowOrBeforeExample
+DeleteExample
+DeleteListExample
+DeleteListErrorExample
+CheckAndDeleteExample
+--批量处理操作
+BatchExample
+BatchSameRowExample
+--行锁
+RowLockExample
+--扫描
+ScanExample
+ScanTimeoutExample
+ScanCacheBatchExample
+--各种特性
+MissingRegionExample
+
+
+ch04 客户端API：高级特性
+=============================
+

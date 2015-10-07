@@ -17,18 +17,63 @@
 	</scm>
 
 	<properties>
+		<!-- dependencies @hadoop -->
+		<hadoop.version>0.20.2-cdh3u4</hadoop.version>
+		<hbase.version>0.92.1</hbase.version>
+		<zookeeper.version>3.4.3</zookeeper.version>
+		<pig.version>0.15.0</pig.version>
+		<!-- dependencies @commons -->
+		<commons-logging.version>1.1.1</commons-logging.version>
+		<google-collections.version>1.0</google-collections.version>
+		<slf4j.version>1.7.1</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+		<json-simple.version>1.1</json-simple.version>
+		<protobuf-java.version>2.4.1</protobuf-java.version>
+		<libthrift.version>0.7.0</libthrift.version>
+		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<!-- <plugins> @conf @updated 20151003 -->
 		<jdkLevel>1.6</jdkLevel>
-		<requiredMavenVersion>[2.1,)</requiredMavenVersion>
+		<requiredMavenVersion>[3.3,)</requiredMavenVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+		<!-- <plugins> Core plugins http://maven.apache.org/plugins/index.html -->
+		<maven-clean-plugin.version>2.6.1</maven-clean-plugin.version>
+		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
+		<maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+		<maven-site-plugin.version>3.4</maven-site-plugin.version>
+		<maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+		<!-- <plugins> Packaging types/tools -->
+		<maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+		<maven-shade-plugin.version>2.4.1</maven-shade-plugin.version>
+		<maven-source-plugin.version>2.4</maven-source-plugin.version>
+		<!-- <plugins> Reporting plugins -->
+		<maven-surefire-report-plugin.version>2.18.1</maven-surefire-report-plugin.version>
+		<!-- <plugins> Tools -->
+		<maven-ant-plugin.version>2.4</maven-ant-plugin.version>
+		<maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version>
+		<maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
+		<maven-toolchains-plugin.version>1.1</maven-toolchains-plugin.version>
+		<!-- <plugins> IDEs -->
+		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
 	</properties>
 
 	<build>
 		<plugins>
+			<!-- <plugins> Core plugins -->
+			<!-- clean -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>${maven-clean-plugin.version}</version>
+			</plugin>
+			<!-- compiler -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${jdkLevel}</source>
 					<target>${jdkLevel}</target>
@@ -36,10 +81,145 @@
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven-deploy-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>${maven-install-plugin.version}</version>
+			</plugin>
+			<!-- resources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${maven-site-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+			</plugin>
+			<!-- <plugins> Packaging types/tools -->
+			<!-- jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${maven-shade-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
+			</plugin>
+			<!-- <plugins> Reporting plugins -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${maven-surefire-report-plugin.version}</version>
+			</plugin>
+			<!-- <plugins> Tools -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ant-plugin</artifactId>
+				<version>${maven-ant-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin.version}</version>
+			</plugin>
+			<!-- dependency -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven-dependency-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${maven-toolchains-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${jdkLevel}</version>
+							<vendor>sun</vendor>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<!-- <plugins> IDEs -->
+			<!-- eclipse -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin.version}</version>
+				<configuration>
+					<!-- <downloadSources>true</downloadSources> -->
+					<downloadJavadocs>false</downloadJavadocs>
+					<additionalConfig>
+						<file>
+							<name>.settings/org.eclipse.core.resources.prefs</name>
+							<content>
+								<![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${project.build.sourceEncoding}${line.separator}]]>
+							</content>
+						</file>
+					</additionalConfig>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
 	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Maven Repository</name>
+			<url>https://repo1.maven.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>apache-repo</id>
+			<name>Apache Repository</name>
+			<url>https://repository.apache.org/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 		<repository>
 			<id>cloudera-releases</id>
 			<url>https://repository.cloudera.com/content/repositories/releases/</url>
@@ -77,22 +257,22 @@
 		<dependency>
 			<groupId>com.google.collections</groupId>
 			<artifactId>google-collections</artifactId>
-			<version>1.0</version>
+			<version>${google-collections.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
+			<version>${commons-logging.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
-			<version>0.20-append-r1057313</version>
+			<version>${hadoop.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>commons-cli</groupId>
@@ -171,7 +351,7 @@
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
-			<version>3.3.2</version>
+			<version>${zookeeper.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>log4j</groupId>
@@ -186,7 +366,7 @@
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase</artifactId>
-			<version>0.91.0-SNAPSHOT</version>
+			<version>${hbase.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.avro</groupId>
@@ -318,12 +498,12 @@
 
 	<modules>
 		<module>ch03</module>
-		<module>ch04</module>
+		<!--<module>ch04</module>
 		<module>ch05</module>
 		<module>ch06</module>
 		<module>ch07</module>
 		<module>ch09</module>
 		<module>ch11</module>
-		<module>hush</module>
+		<module>hush</module>-->
 	</modules>
 </project>

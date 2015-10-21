@@ -18,10 +18,15 @@ $ git checkout -b rev1_cdh3 rev1
 --创建远程分支
 $ git push --set-upstream origin rev1_cdh3
 
+b.复制远程分支
+--checkout远程分支，创建本地分支，并切换到本地分支
+$ git checkout -b rev1_cdh3 origin/rev1_cdh3
+
 
 编译
 =============================
-mvn eclipse:clean eclipse:eclipse
+mvn eclipse:clean
+mvn eclipse:eclipse
 mvn clean
 mvn compile
 mvn package -DskipTests
@@ -92,4 +97,14 @@ MissingRegionExample
 
 ch04 客户端API：高级特性
 =============================
+--过滤器
+hadoop jar hbase-book-ch04-*.jar filters.RowFilterExample
+#比较过滤器
+RowFilterExample
+FamilyFilterExample
+QualifierFilterExample
+ValueFilterExample
+DependentColumnFilterExample
+#专用过滤器
+
 
